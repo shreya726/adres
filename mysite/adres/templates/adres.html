@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<title>ADRES</title>
+
+	</head>
+	<body style="margin-left:5%;">
+		<h2>
+			ADRES: Automated Dual-Route Error Scoring
+		</h2>
+		</h5>
+		<form class="form-inline" action="score/" method="POST">
+			{% csrf_token %}
+			<div class="form-group" style="padding:10px;">
+				Target: <input class="form-control" type="text" min="1" max="20" name="target">
+			</div>
+			<div class="form-group" style="padding:10px;">
+				Response: <input class="form-control" type="text" min="1" max="20" name="response">
+			</div>
+			<input class="btn btn-primary" type="submit" value="Score">
+		</form>
+		<label>Last Evaluated: Target <i>{{target}}</i> Response <i>{{response}}</i></label>
+		<br>
+		<label> Sublexical {{subLex}} </label>
+		<br>
+		<label> Lexical {{lex}} </label>
+		<br>
+		<br>
+		<span>
+			Developed at the 
+				<a href="http://www.bu.edu/aphasiaresearch/">
+					Boston University Aphasia Research Laboratory
+				</a> 
+				with funding from the Dudley Allen Sargent Research Fund and the Boston University Undergrad. Research Opportunities Program. 
+		<br>
+			Ross, K., Johnson, J., and Kiran, S. (2016). 
+			<i>
+				Multi-Step Treatment for Acquired Alexia and Agraphia: Two-Dimensional Analysis of Reading and Writing Errors.
+			</i> 
+			Unpublished manuscript, Boston University, Boston, MA.
+		</span>
+	</body>
+</html>
