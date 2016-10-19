@@ -10,22 +10,120 @@
 			ADRES: Automated Dual-Route Error Scoring
 		</h2>
 		</h5>
-		<form class="form-inline" action="score/" method="POST">
+		<form action="score/" method="POST">
+			<div class="form-inline">
 			{% csrf_token %}
 			<div class="form-group" style="padding:10px;">
-				Target: <input class="form-control" type="text" min="1" max="20" name="target">
+				Target: <input class="form-control" type="text" min="1" max="20" name="target1">
 			</div>
 			<div class="form-group" style="padding:10px;">
-				Response: <input class="form-control" type="text" min="1" max="20" name="response">
+				Response: <input class="form-control" type="text" min="1" max="20" name="response1">
 			</div>
-			<input class="btn btn-primary" type="submit" value="Score">
+			<label> Sublexical {{sublex1}} </label>
+			<label> Lexical {{lex1}} </label>
+		</div>
+		
+	<div class="form-inline">
+			{% csrf_token %}
+			<div class="form-group" style="padding:10px;">
+				Target: <input class="form-control" type="text" min="1" max="20" name="target2">
+			</div>
+			<div class="form-group" style="padding:10px;">
+				Response: <input class="form-control" type="text" min="1" max="20" name="response2">
+			</div>
+			<label> Sublexical {{sublex2}} </label>
+			<label> Lexical {{lex2}} </label>
+		</div>
+		<div class="form-inline">
+			{% csrf_token %}
+			<div class="form-group" style="padding:10px;">
+				Target: <input class="form-control" type="text" min="1" max="20" name="target3">
+			</div>
+			<div class="form-group" style="padding:10px;">
+				Response: <input class="form-control" type="text" min="1" max="20" name="response3">
+			</div>
+			<label> Sublexical {{sublex3}} </label>
+			<label> Lexical {{lex3}} </label>
+		</div>
+		<div class="form-inline">
+			{% csrf_token %}
+			<div class="form-group" style="padding:10px;">
+				Target: <input class="form-control" type="text" min="1" max="20" name="target4">
+			</div>
+			<div class="form-group" style="padding:10px;">
+				Response: <input class="form-control" type="text" min="1" max="20" name="response4">
+			</div>
+			<label> Sublexical {{sublex4}} </label>
+			<label> Lexical {{lex4}} </label>
+		</div>
+		<div class="form-inline">
+			{% csrf_token %}
+			<div class="form-group" style="padding:10px;">
+				Target: <input class="form-control" type="text" min="1" max="20" name="target5">
+			</div>
+			<div class="form-group" style="padding:10px;">
+				Response: <input class="form-control" type="text" min="1" max="20" name="response5">
+			</div>
+			<label> Sublexical {{sublex5}} </label>
+			<label> Lexical {{lex5}} </label>
+		</div>
+		<div class="form-inline">
+			{% csrf_token %}
+			<div class="form-group" style="padding:10px;">
+				Target: <input class="form-control" type="text" min="1" max="20" name="target6">
+			</div>
+			<div class="form-group" style="padding:10px;">
+				Response: <input class="form-control" type="text" min="1" max="20" name="response6">
+			</div>
+			<label> Sublexical {{sublex6}} </label>
+			<label> Lexical {{lex6}} </label>
+		</div>
+		<div class="form-inline">
+			{% csrf_token %}
+			<div class="form-group" style="padding:10px;">
+				Target: <input class="form-control" type="text" min="1" max="20" name="target7">
+			</div>
+			<div class="form-group" style="padding:10px;">
+				Response: <input class="form-control" type="text" min="1" max="20" name="response7">
+			</div>
+			<label> Sublexical {{sublex7}} </label>
+			<label> Lexical {{lex7}} </label>
+		</div>
+		<div class="form-inline">
+			{% csrf_token %}
+			<div class="form-group" style="padding:10px;">
+				Target: <input class="form-control" type="text" min="1" max="20" name="target8">
+			</div>
+			<div class="form-group" style="padding:10px;">
+				Response: <input class="form-control" type="text" min="1" max="20" name="response8">
+			</div>
+			<label> Sublexical {{sublex8}} </label>
+			<label> Lexical {{lex8}} </label>
+		</div>
+		<div class="form-inline">
+			{% csrf_token %}
+			<div class="form-group" style="padding:10px;">
+				Target: <input class="form-control" type="text" min="1" max="20" name="target9">
+			</div>
+			<div class="form-group" style="padding:10px;">
+				Response: <input class="form-control" type="text" min="1" max="20" name="response9">
+			</div>
+			<label> Sublexical {{sublex9}} </label>
+			<label> Lexical {{lex9}} </label>
+		</div>
+		<div class="form-inline">
+			{% csrf_token %}
+			<div class="form-group" style="padding:10px;">
+				Target: <input class="form-control" type="text" min="1" max="20" name="target10">
+			</div>
+			<div class="form-group" style="padding:10px;">
+				Response: <input class="form-control" type="text" min="1" max="20" name="response10">
+			</div>
+			<label> Sublexical {{sublex10}} </label>
+			<label> Lexical {{lex10}} </label>
+			<br>
+			<input align="right" class="btn btn-primary" type="submit" value="Score">
 		</form>
-		<label>Last Evaluated: Target <i>{{target}}</i> Response <i>{{response}}</i></label>
-		<br>
-		<label> Sublexical {{subLex}} </label>
-		<br>
-		<label> Lexical {{lex}} </label>
-		<br>
 		<br>
 		<span>
 			Developed at the 
