@@ -22,6 +22,32 @@
       <h3>
 <a id="adres---automated-dual-route-error-scoring" class="anchor" href="#adres---automated-dual-route-error-scoring" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>adres - Automated Dual-Route Error Scoring</h3>
 
+<p>A project with the Aphasia Research Lab at Sargent College, Boston University. </p>
+
+<h3>
+<a id="aphasia" class="anchor" href="#aphasia" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Aphasia</h3>
+
+<p>(From the <a href="http://www.asha.org/public/speech/disorders/Aphasia/">American Speech-Language-Hearing Association</a>)
+Aphasia is a communication disorder that results from damage to the parts of the brain that contain language (typically in the left half of the brain). Individuals who experience damage to the right side of the brain may have additional difficulties beyond speech and language issues. Aphasia may causes difficulties in speaking, listening, reading, and writing, but does not affect intelligence.</p>
+
+<h2>
+<a id="treatment" class="anchor" href="#treatment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Treatment</h2>
+
+<p>The speech-language pathologist (SLP) works on activities to improve specific language skills affected by damage to the brain. The SLP also helps the person with aphasia develop and use strategies to improve overall communication in a variety of situations. The Aphasia Research Lab at BU designed a new method of assessing treatment: a two-dimensional analysis, where a patient's progress is evaluated on "sublexical" and "lexical" levels. This project is being published for the Conference “54th Annual Academy of Aphasia Meeting.”</p>
+
+<h3>
+<a id="python-implementation" class="anchor" href="#python-implementation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Python Implementation</h3>
+
+<p>The sublexical dimension was fairly straightforward to code, as it mostly entailed string manipulation. One problem I have yet to solve is the case where a patient's non-word response is the same number of syllables as the target word.</p>
+
+<p>The lexical dimension is more complex for a couple reasons. First of all, one of the factors that contributes to a higher score in this dimension is if the patient's response is "related" to the target word. This is proving challenging because although models such as word2vec are helpful, the results are not always accurate. The next step in this area would be to implement a way for clinicians to override the suggested "relatedness" that the system calculates.
+This dimension also has a check for whether or not a patient's response is an English word, for which I used PyDictionary. Another check in this dimension is for "perseveration", or if the patient has repeated the same response within the last three responses. This is for the case that the system is evaluating several responses either through the website, or from a csv file upload. </p>
+
+<h3>
+<a id="website" class="anchor" href="#website" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Website</h3>
+
+<p>This system is intended to be used by aphasia clinicians across the country. We used a Django framework for a currently simple website that allows for ten entries at a time, and outputs the scores in the form of (sublexical, lexical). Eventually, this website will allow for clinicians to upload csv files with all of their results from a treatment session.</p>
+
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/shreya726/adres">adres</a> is maintained by <a href="https://github.com/shreya726">shreya726</a>.</span>
 
