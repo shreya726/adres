@@ -42,7 +42,7 @@ def lexScoring(target, response, last3,targets):
 			#Unrelated description
 			return (2,response)
 		#Perseveration of a nonword - not incorporating overlap stuff
-		elif perseveration(response, last3):
+		elif perseverationNonWord(response, last3,target):
 			return(1, response)
 		else: 
 			#Non-word
@@ -62,7 +62,19 @@ def perseveration(response, last3):
 	else: return False
 	
 def perseverationNonWord(response, last3,target):
-	#In progress
+	if perseveration(response, last3): return True
+	overlap_letters = 0
+	i = 0
+	for word in last3:
+		word_length = len(word)
+		while (i < len(response)) and len(word) > 0:
+			for j in range(0,len(word)):
+				if response[i] == word[j]:
+					overlap_letters +=1
+					word = word[j+1:]
+					break
+			i+=1
+		if (float(overlap_letters)/float(word_length) >=0.5): return True
 	return False
 
 def overlap(response, last3):
