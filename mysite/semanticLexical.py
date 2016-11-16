@@ -2,14 +2,13 @@ from nltk.corpus import wordnet
 from nltk.corpus import wordnet as w
 import pattern
 from pattern.en import pluralize, comparative, superlative, lemma
-from PyDictionary import PyDictionary
-pyDict = PyDictionary()
 import enchant
 usDict = enchant.Dict('en_US') 
 ukDict = enchant.Dict('en_UK') 
+from PyDictionary import PyDictionary
+pyDict = PyDictionary()
 
-def lexScoring(target, response, last3,targets):
-	print(last3)
+def semanticLexScoring(target, response, last3,targets):
 	target = target.lower() #Makes target lower case
 	if len(response) > 1:
 		#Makes all of the response other than the first letter lower-case.
@@ -41,7 +40,7 @@ def lexScoring(target, response, last3,targets):
 			return (9,response)
 		elif related_description(target, response):
 			#Related description
-			return (5,response)
+			return (6,response)
 		elif description(response,target): 
 			#Unrelated description
 			return (2,response)
@@ -59,7 +58,7 @@ def lexScoring(target, response, last3,targets):
 		if perseveration(response, last3): 
 			return (4,response)
 		#unrelated word
-		return (6,response)
+		return (5,response)
 	
 def perseveration(response, last3):
 	if response in last3: return True
