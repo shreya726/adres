@@ -11,7 +11,7 @@
 		</h2>
 		</h5>
 		<form action="score/" method="POST">
-			<div classs="form-inline">
+			<div class="form-inline">
 				{% csrf_token %}
   				<input type="checkbox" name="scoringsystem" value="ADRES Semantic"> Score with ADRES Semantic system (if left unchecked, will score according to default ADRES settings) <br>
 			</div>
@@ -131,9 +131,9 @@
 		</form>
 		<br>
 		<span> Or upload a CSV file in the format of two columns: target, response </span>
-		<form action="script/" method="POST">
+		<form action="script/" method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
-			<input type="file" name="csvfile" accept=".csv">
+			<input type="file" name="csv" accept=".csv">
 			<input align="right" class="btn btn-primary" type="submit" value="Upload File">
 			<span>{{csv}}</span>
 		</form>

@@ -1,22 +1,16 @@
 #!/usr/bin/python
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.http import HttpResponse
 exec(open('lexical.py').read())
 exec(open('semanticLexical.py').read())
 exec(open('sublexical.py').read())
 from adres.models import Document
-from adres.forms import DocumentForm
+from adres.forms import UploadFileForm
 
 def index(request):
-	sublexical = ''
-	lexical = ''
-	target = ''
-	response = ''
 	variables = {}
 	semantic = False
 	if 'scoringsystem' in request.session:
-		#print('here')
 		if request.session['scoringsystem'] == 'ADRES Semantic':
 			semantic = True
 	for i in range(1,11):
@@ -73,47 +67,22 @@ def score(request):
 	return redirect('/adres')
 
 def script(request):
-	#http://stackoverflow.com/questions/5871730/need-a-minimal-django-file-upload-example
-	# csv = request.POST.get('csvfile',None)
-	# print(type(csv))
-	# print(csv)
-	# if csv!=None:
-	# 	csv_input = csv.reader(open(csv, 'rU'), dialect=csv.excel_tab)
-	# 	sublex_scores = []
-	# 	lex_scores = []
-	# 	for row in csv_input:
-	# 		try:
-	# 			words = [line.strip() for line in row[0].split(',')]
-	# 		except:
-	# 			print('Not comma separated')
-	# 			pass
-	# 		try:
-	# 			sublex_scores += [subLexScoring(words[0],words[1])]
-	# 			lex_scores += [lexScoring(words[0],words[1],[],[])[0]]
-	# 		except:
-	# 			print('ASCII error')
-	# 			pass
-	# 	request.session['csv'] = lex_Scores[0]
-	# return redirect('/adres')
-	# Handle file upload
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        #if form.is_valid():
-        newdoc = Document(docfile = request.FILES['docfile'])
-        newdoc.save()
-        csv = newdoc
-        print(type(csv))
-        # Redirect to the document list after POST
-    return redirect('/adres')
-    # else:
-    #     form = DocumentForm() # A empty, unbound form
+	csv = UploadFileForm(request.POST, request.FILES)
 
-    # # Load documents for the list page
-    # documents = Document.objects.all()
-
-    # # Render list page with the documents and the form
-    # return render_to_response(
-    #     'myapp/list.html',
-    #     {'documents': documents, 'form': form},
-    #     context_instance=RequestContext(request)
-    # )
+	if csv is not None:
+		csv_input = request.FILES['csv'].read()
+		sublex_scores = []
+		lex_scores = []
+		for row in csv_input:
+			try:
+				words = [line.strip() for line in row[0].split(',')]
+			except:
+				pass
+			try:
+				sublex_scores += [subLexScoring(words[0],words[1])]
+				lex_scores += [lexScoring(words[0],words[1],[],[])[0]]
+			except:
+				print('ASCII error')
+				pass
+		request.session['csv'] = lex_scores[0]
+	return redirect('/adres')
