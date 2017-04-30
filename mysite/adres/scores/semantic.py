@@ -1,8 +1,11 @@
+import enchant
+
 from nltk.corpus import wordnet as w
 from pattern.en import pluralize, comparative, superlative, lemma
 from PyDictionary import PyDictionary
+
 pyDict = PyDictionary()
-import enchant
+
 usDict = enchant.Dict('en_US')
 ukDict = enchant.Dict('en_UK')
 
@@ -43,14 +46,14 @@ def description(response, target):
         return True
     if ' ' in response:
         total = 0
-        areWords = 0
+        are_words = 0
         for i in response.split():
             total += 1
             if is_word(i):
-                areWords += 1
+                are_words += 1
         # The number of non-words in the response must be
         # less than 50% to count as a description.
-        if float(areWords) / float(total) >= 0.5:
+        if float(are_words) / float(total) >= 0.5:
             return True
     return False
 
@@ -90,17 +93,7 @@ def related_description(target, response):
                 return True
     return False
 
-
-# To prevent recursion with the compound word check in isWord()
-# check if this is still needed since changes to compound()
-global flag
-flag = False
-
-
 def compound(response, target):
-    global flag
-    flag = True
-
     if is_word(response + target):
         return True
     elif is_word(target + response):

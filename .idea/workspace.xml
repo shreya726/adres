@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5448978-b565-41d8-8ac9-ed6656786152" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mysite/mysite/scores/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mysite/mysite/scores/handle_csv.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mysite/mysite/scores/lexical.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mysite/mysite/scores/semantic.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mysite/mysite/scores/semantic_lexical.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mysite/mysite/scores/sublexical.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/db.sqlite3" afterPath="$PROJECT_DIR$/mysite/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/adres/views.py" afterPath="$PROJECT_DIR$/mysite/adres/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysite/adres/scores/semantic.py" afterPath="$PROJECT_DIR$/mysite/adres/scores/semantic.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -87,14 +79,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="semantic.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="semantic.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mysite/adres/scores/semantic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="21" column="9" lean-forward="false" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-              <folding>
-                <element signature="e#0#36#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-1083">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -119,7 +109,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysite/mysite/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -156,6 +146,7 @@
       <find>is_Word</find>
       <find>test</find>
       <find>print</find>
+      <find>flag</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -199,6 +190,7 @@
         <option value="$PROJECT_DIR$/mysite/adres/scores/semantic_lexical.py" />
         <option value="$PROJECT_DIR$/mysite/adres/scores/handle_csv.py" />
         <option value="$PROJECT_DIR$/mysite/adres/scores/sublexical.py" />
+        <option value="$PROJECT_DIR$/mysite/adres/scores/semantic.py" />
       </list>
     </option>
   </component>
@@ -268,7 +260,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="adres" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="adres" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="adres" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="mysite" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="adres" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scores" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -823,16 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysite/adres/scores/semantic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="21" column="9" lean-forward="false" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mysite/adres/scores/lexical.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -871,6 +875,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysite/adres/scores/semantic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1083">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
