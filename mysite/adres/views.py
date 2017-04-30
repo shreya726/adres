@@ -17,8 +17,7 @@ def index(request):
 	variable_names = {}
 	semantic = False
 	if 'scoringsystem' in request.session:
-		if request.session['scoringsystem'] == 'ADRES Semantic':
-			semantic = True
+		semantic = request.session['scoringsystem'] == 'ADRES Semantic'
 	for i in range(1,11):
 		target_var = 'target'+str(i)
 		response_var = 'response'+str(i)
@@ -32,8 +31,7 @@ def index(request):
 			variable_names[sub_lex_var] = request.session[sub_lex_var]
 		if lex_var in request.session:
 			variable_names[lex_var] = request.session[lex_var]
-	if 'csv' in request.session:
-		variable_names['csv'] = 'test'
+
 	variable_names['scoringsystem'] = semantic
 	return render(request, 'adres.html',variable_names)
 
@@ -67,8 +65,8 @@ def score(request):
 
 		if target == '' and response == '':
 			continue
-		request.session[sub_lex_var] = sublex_score
-		request.session[lex_var] = lex_score
+		request.session[sub_lex_var] = 'Sublexical: ' + str(sublex_score)
+		request.session[lex_var] = 'Lexical: ' + str(lex_score)
 	
 	return redirect('/adres')
 
