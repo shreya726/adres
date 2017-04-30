@@ -15,7 +15,6 @@ class SublexicalScore:
             if t in response:
                 letters +=1
                 response = self.remove(response, t)
-        print(self.target)
         return float(letters)/float(len(self.target)) >= 0.5
 
     def score(self):
@@ -26,8 +25,10 @@ class SublexicalScore:
             '''
             self.response = self.response.split(';')[-1]
         if len(self.response) > 1:
-            while self.response[0] == " ": self.response = self.response[1:]
-            while self.response[-1] == " ": self.response = self.response[:-1]
+            while self.response[0] == " " and len(self.response) > 1:
+                self.response = self.response[1:]
+            while self.response[-1] == " " and len(self.response) > 1:
+                self.response = self.response[:-1]
         if self.response == self.target:
             return 9
         if self.response == "" or self.response == "-":
@@ -50,6 +51,7 @@ class SublexicalScore:
             return 5
         else:
             if self.errors < 2:
+                #TODO fix this
                 print("Not multiple errors?")
             return 3
 

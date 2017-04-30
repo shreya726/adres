@@ -1,11 +1,11 @@
 import enchant
 
-import mysite.scores.semantic as sm
+import adres.scores.semantic as sm
 
 usDict = enchant.Dict('en_US')
 ukDict = enchant.Dict('en_UK')
 
-class SemanticLexicalScore:
+class LexicalScore:
 
     def __init__(self, target, response, last3 = [], targets=[]):
         self.target = target.lower()
@@ -22,10 +22,13 @@ class SemanticLexicalScore:
             # semicolon as the whole response.
             response = response.split(';')[-1]
 
+
+        # Taking out spaces at the beginning and end of string
         if len(response) > 1:
-            # Taking out spaces at the beginning and end of string
-            while response[0] == " ": response = response[1:]
-            while response[-1] == " ": response = response[:-1]
+            while response[0] == " " and len(response) > 1:
+                response = response[1:]
+            while response[-1] == " " and len(response) > 1:
+                response = response[:-1]
         self.response = response.lower()
         self.perseveration = self.response in self.last3
         self.is_word = self.check_is_word()
@@ -79,7 +82,7 @@ class SemanticLexicalScore:
                 return 9
             elif sm.related_description(self.target, self.response):
                 # Related description
-                return 6
+                return 5
             elif sm.description(self.response, self.target):
                 # Unrelated description
                 return 2
@@ -97,4 +100,4 @@ class SemanticLexicalScore:
             if self.perseveration:
                 return 4
             # unrelated word
-            return 5
+            return 6

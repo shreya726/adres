@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
-import mysite.scores.lexical as lexical
-import mysite.scores.sublexical as sublexical
-import mysite.scores.semantic_lexical as semantic_lexical
+import adres.scores.lexical as lexical
+import adres.scores.sublexical as sublexical
+import adres.scores.semantic_lexical as semantic_lexical
 
-def main(targets, responses, manual_scores = [], testing=False, semantic=False):
+def score(targets, responses, semantic=False):
 	scores = [tuple(['Target','Response', 'Sublexical Score', 'Lexical Score'])]
 	last3 = []
 	ae = 0
@@ -15,7 +15,7 @@ def main(targets, responses, manual_scores = [], testing=False, semantic=False):
 			#Counting ASCII errors.
 			ae+=1
 		else:
-			sublex_score = sublexical.SublexicalScore(target=target, response=response, last3=last3, targets=targets).score()
+			sublex_score = sublexical.SublexicalScore(target=target, response=response).score()
 			if semantic:
 				lex_score = semantic_lexical.SemanticLexicalScore(target=target, response=response, last3=last3, targets=targets).score()
 
@@ -44,5 +44,5 @@ def parse_csv(file, semantic):
 		row = row.split(',')
 		targets.append(row[0])
 		responses.append(row[1])
-	scores = main(targets=targets, responses=responses, semantic=semantic)
+	scores = score(targets=targets, responses=responses, semantic=semantic)
 	return scores
