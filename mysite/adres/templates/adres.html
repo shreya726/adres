@@ -1,15 +1,57 @@
-<html>
-	<head>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<title>ADRES</title>
-
-	</head>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>ADRES</title>
+    <!-- BOOTSTRAP CORE STYLE  -->
+    <link href="../static/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONT AWESOME ICON STYLE  -->
+    <link href="../static/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- PRETTYPHOTO STYLE  -->
+    <link href="../static/assets/css/prettyPhoto.css" rel="stylesheet" />
+    <!-- CUSTOM STYLE CSS -->
+    <link href="../static/assets/css/style.css" rel="stylesheet" />
+    <!-- CUSTOM THEME COLOR -- YOU CAN USE LIGHT & DARK THEMES  -->
+    <link href="../static/assets/css/themes/light.css" rel="stylesheet" />
+    <!-- GOOGLE FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
 	<body style="margin-left:5%;">
-		<h2>
-			ADRES: Automated Dual-Route Error Scoring
+    <div class="navbar navbar-inverse navbar-fixed-top scrollclass">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">ADRES</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/adres">Scoring System</a></li>
+                    <li><a href="#gallery-sec">Gallery</a></li>
+                    <li><a href="#location-sec">Location</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="overlay">
+            <div class="container">
+                <br>
+                <br>
+                <h2>
+			Scoring System
 		</h2>
-		</h5>
 		<form action="score/" method="POST">
 			<div class="form-inline">
 				{% csrf_token %}
@@ -23,8 +65,10 @@
 				<div class="form-group" style="padding:10px;">
 					Response: <input class="form-control" type="text" min="1" max="20" name="response1">
 				</div>
+
 				<label> Sublexical {{sublex1}} </label>
 				<label> Lexical {{lex1}} </label>
+
 			</div>
 		
 			<div class="form-inline">
@@ -134,7 +178,7 @@
 		<form action="script/" method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 			<input type="file" name="csv" accept=".csv">
-			<input align="right" class="btn btn-primary" type="submit" value="Upload File">
+			<input align="right" class="btn btn-primary" type="submit" value="Download Scores">
 			<span>{{csv}}</span>
 		</form>
 		<span>
@@ -150,5 +194,7 @@
 			</i> 
 			Unpublished manuscript, Boston University, Boston, MA.
 		</span>
+            </div>
+    </div>
 	</body>
 </html>

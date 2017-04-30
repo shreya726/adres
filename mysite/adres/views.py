@@ -1,36 +1,41 @@
 #!/usr/bin/python
 from django.shortcuts import render
 from django.shortcuts import redirect
-exec(open('lexical.py').read())
-exec(open('semanticLexical.py').read())
-exec(open('sublexical.py').read())
+from django.template import Context, loader
+from django.http import HttpResponse
+
+import mysite.scores.lexical2 as lex
+import mysite.scores.sublexical2 as sublex
+import mysite.scores.semantic_lexical2 as semantic_lex
+import mysite.scores.csv as handle_csv
+
 from adres.models import Document
 from adres.forms import UploadFileForm
 
 def index(request):
-	variables = {}
+	# Dictionary with variable names from html.
+	variable_names = {}
 	semantic = False
 	if 'scoringsystem' in request.session:
 		if request.session['scoringsystem'] == 'ADRES Semantic':
 			semantic = True
 	for i in range(1,11):
-		print(request.session)
-		targetVar = 'target'+str(i)
-		responseVar = 'response'+str(i)
-		subLexVar = 'sublex'+str(i)
-		lexVar = 'lex'+str(i)
-		if targetVar in request.session:
-			variables[targetVar] = request.session[targetVar]
-		if responseVar in request.session:
-			variables[responseVar] = request.session[responseVar]
-		if subLexVar in request.session:
-			variables[subLexVar] = request.session[subLexVar]
-		if lexVar in request.session:
-			variables[lexVar] = request.session[lexVar]
+		target_var = 'target'+str(i)
+		response_var = 'response'+str(i)
+		sub_lex_var = 'sublex'+str(i)
+		lex_var = 'lex'+str(i)
+		if target_var in request.session:
+			variable_names[target_var] = request.session[target_var]
+		if response_var in request.session:
+			variable_names[response_var] = request.session[response_var]
+		if sub_lex_var in request.session:
+			variable_names[sub_lex_var] = request.session[sub_lex_var]
+		if lex_var in request.session:
+			variable_names[lex_var] = request.session[lex_var]
 	if 'csv' in request.session:
-		variables['csv'] = 'test'
-	variables['scoringsystem'] = semantic
-	return render(request, 'adres.html',variables)
+		variable_names['csv'] = 'test'
+	variable_names['scoringsystem'] = semantic
+	return render(request, 'adres.html',variable_names)
 
 def score(request):
 	targets = []
@@ -40,29 +45,30 @@ def score(request):
 	if request.POST.get('scoringsystem','') == 'ADRES Semantic':
 		semantic = True
 	for i in range(1,11):
-		targetVar = 'target'+str(i)
-		responseVar = 'response'+str(i)
-		subLexVar = 'sublex'+str(i)
-		lexVar = 'lex'+str(i)
-		target = request.POST.get(targetVar,'')
+		target_var = 'target'+str(i)
+		response_var = 'response'+str(i)
+		sub_lex_var = 'sublex'+str(i)
+		lex_var = 'lex'+str(i)
+		target = request.POST.get(target_var,'')
 		targets += [target]
-		response = request.POST.get(responseVar,'')
-		request.session[targetVar] = target
-		request.session[responseVar] = response
-		subLex = subLexScoring(target, response)
-		print(semantic)
+		response = request.POST.get(response_var,'')
+		request.session[target_var] = target
+		request.session[response_var] = response
+
+		sublex_score = sublex.SublexicalScore(target=target, response=response).score()
 		if semantic:
-			lex = semanticLexScoring(target, response, last3, targets)[0]
+			lex_score = semantic_lex.SemanticLexicalScore(target=target, response=response, last3=last3, targets=targets).score()
+
 		else:
-			lex = lexScoring(target, response, last3, targets)[0]
-		if len(last3) > 2:
+			lex_score = lex.LexicalScore(target=target, response=response, last3=last3, targets=targets).score()
+		if len(last3) > 2 and response!= '':
 			last3 = last3[1:]
-		if response!= '':
 			last3 += [response]
+
 		if target == '' and response == '':
 			continue
-		request.session[subLexVar] = subLex
-		request.session[lexVar] = lex
+		request.session[sub_lex_var] = sublex_score
+		request.session[lex_var] = lex_score
 	
 	return redirect('/adres')
 
@@ -71,18 +77,13 @@ def script(request):
 
 	if csv is not None:
 		csv_input = request.FILES['csv'].read()
-		sublex_scores = []
-		lex_scores = []
-		for row in csv_input:
-			try:
-				words = [line.strip() for line in row[0].split(',')]
-			except:
-				pass
-			try:
-				sublex_scores += [subLexScoring(words[0],words[1])]
-				lex_scores += [lexScoring(words[0],words[1],[],[])[0]]
-			except:
-				print('ASCII error')
-				pass
-		request.session['csv'] = lex_scores[0]
-	return redirect('/adres')
+		response = HttpResponse(content_type='text/csv')
+		response['Content-Disposition'] = 'attachment; filename="ADRES-scores.csv"'
+		semantic =  request.POST.get('scoringsystem', '') == 'ADRES Semantic'
+		c = Context({
+			'data': handle_csv.parse_csv(csv_input, semantic),
+		})
+		t = loader.get_template('clean_csv.txt')
+		response.write(t.render(c))
+		return response
+	return redirect('/upload')
