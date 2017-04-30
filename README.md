@@ -3,9 +3,11 @@
 ##    
 
 To run:
-```cd mysite```
-```python2.7 manage.py runserver```
 
+```
+cd mysite
+python2.7 manage.py runserver
+```
 
 Developed at the Boston University Aphasia Research Laboratory with funding from the Dudley Allen Sargent Research Fund and the Boston University Undergrad. Research Opportunities Program. 
 
