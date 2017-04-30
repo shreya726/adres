@@ -4,10 +4,10 @@ from django.shortcuts import redirect
 from django.template import Context, loader
 from django.http import HttpResponse
 
-import mysite.scores.lexical2 as lex
-import mysite.scores.sublexical2 as sublex
-import mysite.scores.semantic_lexical2 as semantic_lex
-import mysite.scores.csv as handle_csv
+import mysite.scores.lexical as lex
+import mysite.scores.sublexical as sublex
+import mysite.scores.semantic_lexical as semantic_lex
+import mysite.scores.handle_csv as handle_csv
 
 from adres.models import Document
 from adres.forms import UploadFileForm

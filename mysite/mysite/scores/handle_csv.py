@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
-import mysite.scores.lexical2 as lexical
-import mysite.scores.sublexical2 as sublexical
-import mysite.scores.semantic_lexical2 as semantic_lexical
+import mysite.scores.lexical as lexical
+import mysite.scores.sublexical as sublexical
+import mysite.scores.semantic_lexical as semantic_lexical
 
 def main(targets, responses, manual_scores = [], testing=False, semantic=False):
 	scores = [tuple(['Target','Response', 'Sublexical Score', 'Lexical Score'])]
