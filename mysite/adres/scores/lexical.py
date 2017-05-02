@@ -5,9 +5,9 @@ import adres.scores.semantic as sm
 usDict = enchant.Dict('en_US')
 ukDict = enchant.Dict('en_UK')
 
-class LexicalScore:
 
-    def __init__(self, target, response, last3 = [], targets=[]):
+class LexicalScore:
+    def __init__(self, target, response, last3=[], targets=[]):
         self.target = target.lower()
 
         self.last3 = last3
@@ -21,7 +21,6 @@ class LexicalScore:
             # If multiple responses entered, take the last one afer
             # semicolon as the whole response.
             response = response.split(';')[-1]
-
 
         # Taking out spaces at the beginning and end of string
         if len(response) > 1:

@@ -1,10 +1,10 @@
 # ADRES
 ## Automated Dual-Route Error Scoring
-##    
 
 To run:
 
 ```
+git clone https://github.com/shreya726/adres.git
 cd mysite
 python2.7 manage.py runserver
 ```

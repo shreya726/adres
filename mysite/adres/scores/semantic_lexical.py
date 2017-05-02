@@ -5,9 +5,9 @@ import adres.scores.semantic as sm
 usDict = enchant.Dict('en_US')
 ukDict = enchant.Dict('en_UK')
 
-class SemanticLexicalScore:
 
-    def __init__(self, target, response, last3 = [], targets=[]):
+class SemanticLexicalScore:
+    def __init__(self, target, response, last3=[], targets=[]):
         self.target = target.lower()
 
         self.last3 = last3
@@ -24,8 +24,10 @@ class SemanticLexicalScore:
 
         if len(response) > 1:
             # Taking out spaces at the beginning and end of string
-            while response[0] == " ": response = response[1:]
-            while response[-1] == " ": response = response[:-1]
+            while response[0] == " " and len(response) > 1:
+                response = response[1:]
+            while response[-1] == " " and len(response) > 1:
+                response = response[:-1]
         self.response = response.lower()
         self.perseveration = self.response in self.last3
         self.is_word = self.check_is_word()

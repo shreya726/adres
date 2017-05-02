@@ -10,7 +10,7 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>ADRES</title>
+    <title>ERROR!</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="../static/assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICON STYLE  -->
@@ -24,7 +24,6 @@
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
-
 	<body style="margin-left:5%;">
     <div class="navbar navbar-inverse navbar-fixed-top scrollclass">
         <div class="container">
@@ -53,44 +52,11 @@
                 <br>
                 <br>
                 <br>
-                <h2>
-		Upload a file
-                </h2>
-                    <br>
-		<span> Upload a CSV file in the format of two columns: target, response </span>
-                <br>
-                <form action="/adres/script/" method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
-
-			<input type="file" name="csv" accept=".csv">
-                    <br>
-                      				<input type="checkbox" name="scoringsystem" value="ADRES Semantic"> Score with ADRES Semantic system (if left unchecked, will score according to default ADRES settings) <br>
-<br>
-			<input align="right" class="btn btn-primary" type="submit" value="Download CSV file with scores">
-
-<br>
-
-		</form>
-                <br>
-                <br>
-
-                 <span>
-            Developed at the
-                <a href="http://www.bu.edu/aphasiaresearch/">
-                    Boston University Aphasia Research Laboratory
-                </a>
-                with funding from the Dudley Allen Sargent Research Fund and the Boston University Undergraduate Research Opportunities Program.
-        <br>
-            Ross, K., Johnson, J.P., & Kiran, S. (2017).
-            <a href="http://www.tandfonline.com/doi/full/10.1080/09602011.2017.1311796">
-                Multi-step treatment for acquired alexia and agraphia: Two-dimensional analysis of reading and writing errors.
-            </a>
-            <i> Neuropsychological Rehabilitation.</i> Advance online publication. doi: 10.1080/09602011.2017.1311796
-        </span>
+                <h2>500</h2>
+                Internal server error.
             </div>
 
 </div>
-
 
 
 </body>

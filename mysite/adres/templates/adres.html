@@ -37,9 +37,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/">Home</a></li>
                     <li><a href="/about">About</a></li>
-                    <li><a href="/adres">Scoring System</a></li>
-                    <li><a href="#gallery-sec">Gallery</a></li>
-                    <li><a href="#location-sec">Location</a></li>
+                    <li><a href="/adres">Try ADRES</a></li>
+                    <li><a href="/upload">Upload a file</a></li>
                 </ul>
             </div>
 
@@ -49,10 +48,11 @@
             <div class="container">
                 <br>
                 <br>
+                <br>
                 <h2>
 			Scoring System
 		</h2>
-		<form action="score/" method="POST">
+		<form action="/score/" method="POST">
 			<div class="form-inline">
 				{% csrf_token %}
   				<input type="checkbox" name="scoringsystem" value="ADRES Semantic"> Score with ADRES Semantic system (if left unchecked, will score according to default ADRES settings) <br>
@@ -148,52 +148,27 @@
 				<label>  {{sublex8}} </label>
 				<label>{{lex8}} </label>
 			</div>
+		
 			<div class="form-inline">
 				{% csrf_token %}
-				<div class="form-group" style="padding:10px;">
-					Target: <input class="form-control" type="text" min="1" max="20" name="target9">
-				</div>
-				<div class="form-group" style="padding:10px;">
-					Response: <input class="form-control" type="text" min="1" max="20" name="response9">
-				</div>
-				<label>{{sublex9}} </label>
-				<label> {{lex9}} </label>
-			</div>
-			<div class="form-inline">
-				{% csrf_token %}
-				<div class="form-group" style="padding:10px;">
-					Target: <input class="form-control" type="text" min="1" max="20" name="target10">
-				</div>
-				<div class="form-group" style="padding:10px;">
-					Response: <input class="form-control" type="text" min="1" max="20" name="response10">
-				</div>
-				<label> {{sublex10}} </label>
-				<label>  {{lex10}} </label>
-				<br>
+
 				<input align="right" class="btn btn-primary" type="submit" value="Score">
 			</div> 
 		</form>
 		<br>
-		<span> Or upload a CSV file in the format of two columns: target, response </span>
-		<form action="script/" method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
-			<input type="file" name="csv" accept=".csv">
-			<input align="right" class="btn btn-primary" type="submit" value="Download Scores">
-			<span>{{csv}}</span>
-		</form>
 		<span>
-			Developed at the 
-				<a href="http://www.bu.edu/aphasiaresearch/">
-					Boston University Aphasia Research Laboratory
-				</a> 
-				with funding from the Dudley Allen Sargent Research Fund and the Boston University Undergrad. Research Opportunities Program. 
-		<br>
-			Ross, K., Johnson, J., and Kiran, S. (2016). 
-			<i>
-				Multi-Step Treatment for Acquired Alexia and Agraphia: Two-Dimensional Analysis of Reading and Writing Errors.
-			</i> 
-			Unpublished manuscript, Boston University, Boston, MA.
-		</span>
+            Developed at the
+                <a href="http://www.bu.edu/aphasiaresearch/">
+                    Boston University Aphasia Research Laboratory
+                </a>
+                with funding from the Dudley Allen Sargent Research Fund and the Boston University Undergraduate Research Opportunities Program.
+        <br>
+            Ross, K., Johnson, J.P., & Kiran, S. (2017).
+            <a href="http://www.tandfonline.com/doi/full/10.1080/09602011.2017.1311796">
+                Multi-step treatment for acquired alexia and agraphia: Two-dimensional analysis of reading and writing errors.
+            </a>
+            <i> Neuropsychological Rehabilitation.</i> Advance online publication. doi: 10.1080/09602011.2017.1311796
+        </span>
             </div>
     </div>
 	</body>

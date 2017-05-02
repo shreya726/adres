@@ -9,6 +9,7 @@ pyDict = PyDictionary()
 usDict = enchant.Dict('en_US')
 ukDict = enchant.Dict('en_UK')
 
+
 def related(response, target):
     if not is_word(response):
         # Check if word for the call from related_description()
@@ -22,13 +23,14 @@ def related(response, target):
         response_synset = w.synsets(response)[0]
         if target_synset.path_similarity(response_synset) > 0.1:
             return True
-        #print('here')
+        # print('here')
         if response in pyDict.synonym(target): return True
         if target in pyDict.synonym(response): return True
     except:
         # Not a word
         return False
     return False
+
 
 def is_word(response):
     # add all targets
@@ -39,6 +41,7 @@ def is_word(response):
         return usDict.check(response) or ukDict.check(response)
     except:
         return False
+
 
 def description(response, target):
     if response[0] == '[' and response[-1] == ']':
@@ -92,6 +95,7 @@ def related_description(target, response):
                 # Check if the lemmas of the words correlate.
                 return True
     return False
+
 
 def compound(response, target):
     if is_word(response + target):
