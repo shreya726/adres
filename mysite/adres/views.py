@@ -12,7 +12,6 @@ import adres.scores.sublexical as sublex
 import adres.scores.semantic_lexical as semantic_lex
 import adres.scores.handle_csv as handle_csv
 
-from adres.models import Document
 from adres.forms import UploadFileForm
 
 

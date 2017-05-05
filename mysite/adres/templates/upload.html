@@ -11,16 +11,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
     <title>ADRES</title>
+    {% load static %}
     <!-- BOOTSTRAP CORE STYLE  -->
-    <link href="../static/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="{% static "assets/css/bootstrap.css" %}" rel="stylesheet" />
     <!-- FONT AWESOME ICON STYLE  -->
-    <link href="../static/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="{% static "assets/css/font-awesome.css" %}" rel="stylesheet" />
     <!-- PRETTYPHOTO STYLE  -->
-    <link href="../static/assets/css/prettyPhoto.css" rel="stylesheet" />
+    <link href="{% static "assets/css/prettyPhoto.css" %}" rel="stylesheet" />
     <!-- CUSTOM STYLE CSS -->
-    <link href="../static/assets/css/style.css" rel="stylesheet" />
+    <link href="{% static "assets/css/style.css" %}" rel="stylesheet" />
     <!-- CUSTOM THEME COLOR -- YOU CAN USE LIGHT & DARK THEMES  -->
-    <link href="../static/assets/css/themes/light.css" rel="stylesheet" />
+    <link href="{% static "assets/css/themes/light.css" %}" rel="stylesheet" />
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
@@ -62,7 +63,7 @@
                 <form action="/script/" method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 
-			<input type="file" name="csv" accept=".csv">
+			<input type="file" name="csv" accept=".csv" required>
                     <br>
                       				<input type="checkbox" name="scoringsystem" value="ADRES Semantic"> Score with ADRES Semantic system (if left unchecked, will score according to default ADRES settings) <br>
 <br>

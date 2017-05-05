@@ -9,16 +9,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
     <title>ADRES</title>
+    {% load static %}
     <!-- BOOTSTRAP CORE STYLE  -->
-    <link href="../static/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="{% static "assets/css/bootstrap.css" %}" rel="stylesheet" />
     <!-- FONT AWESOME ICON STYLE  -->
-    <link href="../static/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="{% static "assets/css/font-awesome.css" %}" rel="stylesheet" />
     <!-- PRETTYPHOTO STYLE  -->
-    <link href="../static/assets/css/prettyPhoto.css" rel="stylesheet" />
+    <link href="{% static "assets/css/prettyPhoto.css" %}" rel="stylesheet" />
     <!-- CUSTOM STYLE CSS -->
-    <link href="../static/assets/css/style.css" rel="stylesheet" />
+    <link href="{% static "assets/css/style.css" %}" rel="stylesheet" />
     <!-- CUSTOM THEME COLOR -- YOU CAN USE LIGHT & DARK THEMES  -->
-    <link href="../static/assets/css/themes/light.css" rel="stylesheet" />
+    <link href="{% static "assets/css/themes/light.css" %}" rel="stylesheet" />
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
@@ -60,7 +61,7 @@
 			<div class="form-inline">
 				{% csrf_token %}
 				<div class="form-group" style="padding:10px;">
-					Target: <input class="form-control" type="text" min="1" max="20" name="target1">
+					Target: <input class="form-control" type="text" min="1" max="20" name="target1" required>
 				</div>
 				<div class="form-group" style="padding:10px;">
 					Response: <input class="form-control" type="text" min="1" max="20" name="response1">
@@ -74,7 +75,7 @@
 			<div class="form-inline">
 				{% csrf_token %}
 				<div class="form-group" style="padding:10px;">
-					Target: <input class="form-control" type="text" min="1" max="20" name="target2">
+					Target: <input class="form-control" type="text" min="1" max="20" name="target2" required>
 				</div>
 				<div class="form-group" style="padding:10px;">
 					Response: <input class="form-control" type="text" min="1" max="20" name="response2">
@@ -85,7 +86,7 @@
 			<div class="form-inline">
 				{% csrf_token %}
 				<div class="form-group" style="padding:10px;">
-					Target: <input class="form-control" type="text" min="1" max="20" name="target3">
+					Target: <input class="form-control" type="text" min="1" max="20" name="target3" required>
 				</div>
 				<div class="form-group" style="padding:10px;">
 					Response: <input class="form-control" type="text" min="1" max="20" name="response3">
@@ -96,7 +97,7 @@
 			<div class="form-inline">
 				{% csrf_token %}
 				<div class="form-group" style="padding:10px;">
-					Target: <input class="form-control" type="text" min="1" max="20" name="target4">
+					Target: <input class="form-control" type="text" min="1" max="20" name="target4" required>
 				</div>
 				<div class="form-group" style="padding:10px;">
 					Response: <input class="form-control" type="text" min="1" max="20" name="response4">
@@ -107,7 +108,7 @@
 			<div class="form-inline">
 				{% csrf_token %}
 				<div class="form-group" style="padding:10px;">
-					Target: <input class="form-control" type="text" min="1" max="20" name="target5">
+					Target: <input class="form-control" type="text" min="1" max="20" name="target5" required>
 				</div>
 				<div class="form-group" style="padding:10px;">
 					Response: <input class="form-control" type="text" min="1" max="20" name="response5">
@@ -118,7 +119,7 @@
 			<div class="form-inline">
 				{% csrf_token %}
 				<div class="form-group" style="padding:10px;">
-					Target: <input class="form-control" type="text" min="1" max="20" name="target6">
+					Target: <input class="form-control" type="text" min="1" max="20" name="target6" required>
 				</div>
 				<div class="form-group" style="padding:10px;">
 					Response: <input class="form-control" type="text" min="1" max="20" name="response6">
@@ -129,7 +130,7 @@
 			<div class="form-inline">
 				{% csrf_token %}
 				<div class="form-group" style="padding:10px;">
-					Target: <input class="form-control" type="text" min="1" max="20" name="target7">
+					Target: <input class="form-control" type="text" min="1" max="20" name="target7" required>
 				</div>
 				<div class="form-group" style="padding:10px;">
 					Response: <input class="form-control" type="text" min="1" max="20" name="response7">
@@ -140,7 +141,7 @@
 			<div class="form-inline">
 				{% csrf_token %}
 				<div class="form-group" style="padding:10px;">
-					Target: <input class="form-control" type="text" min="1" max="20" name="target8">
+					Target: <input class="form-control" type="text" min="1" max="20" name="target8" required>
 				</div>
 				<div class="form-group" style="padding:10px;">
 					Response: <input class="form-control" type="text" min="1" max="20" name="response8">
