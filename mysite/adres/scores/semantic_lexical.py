@@ -84,13 +84,13 @@ class SemanticLexicalScore:
                 return 6
             elif sm.description(self.response, self.target):
                 # Unrelated description
-                return 2
+                return 3
             # Perseveration of a nonword - not incorporating overlap stuff
             elif self.perseveration_non_word():
                 return 1
             else:
                 # Non-word
-                return 3
+                return 2
         elif sm.morphological_error(self.target, self.response):
             # Morphological errors
             return 8
