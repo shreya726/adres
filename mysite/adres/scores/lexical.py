@@ -1,6 +1,6 @@
 import enchant
 
-import adres.scores.semantic as sm
+import adres.scores.related as related
 
 usDict = enchant.Dict('en_US')
 ukDict = enchant.Dict('en_UK')
@@ -79,10 +79,10 @@ class LexicalScore:
                 # If target is in the description,
                 # treat as accurate response of 9.
                 return 9
-            elif sm.related_description(self.target, self.response):
+            elif related.related_description(self.target, self.response):
                 # Related description
                 return 5
-            elif sm.description(self.response, self.target):
+            elif related.description(self.response, self.target):
                 # Unrelated description
                 return 2
             # Perseveration of a nonword - not incorporating overlap stuff
@@ -91,7 +91,7 @@ class LexicalScore:
             else:
                 # Non-word
                 return 3
-        elif sm.morphological_error(self.target, self.response):
+        elif related.morphological_error(self.target, self.response):
             # Morphological errors
             return 8
         else:

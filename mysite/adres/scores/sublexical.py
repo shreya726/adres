@@ -1,5 +1,6 @@
 import copy
 
+
 class SublexicalScore:
     def __init__(self, target, response):
         self.target = target.lower()
@@ -7,15 +8,15 @@ class SublexicalScore:
         self.errors = 0
         self.overlap = False
 
-
+    # Measuring overlap in word
     def overlap_word(self):
         letters = 0
         response = copy.copy(self.response)
         for t in self.target:
             if t in response:
-                letters +=1
+                letters += 1
                 response = self.remove(response, t)
-        return float(letters)/float(len(self.target)) >= 0.5
+        return float(letters) / float(len(self.target)) >= 0.5
 
     def score(self):
         if "don't know" in self.response: return 0
@@ -50,17 +51,16 @@ class SublexicalScore:
         if self.substitution():
             return 5
         else:
-            if self.errors < 2:
-                #TODO fix this
-                print("Not multiple errors?")
             return 3
 
+    # Remove a certain letter from a word
     def remove(self, word, letter):
         for i in range(len(word)):
             if word[i] == letter:
                 return word[:i] + word[i + 1:]
         return word
 
+    # Check number of additions
     def addition(self):
         diff = len(self.response) - len(self.target)
         if diff > 1:
@@ -71,6 +71,7 @@ class SublexicalScore:
             return all([t not in self.response for t in self.target])
         return False
 
+    # Check number of transpositions.
     def transposition(self):
         last_index = -1
         if len(self.target) == len(self.response):
@@ -81,7 +82,7 @@ class SublexicalScore:
                     else:
                         if self.response[last_index] == self.target[i]:
                             last_index = -1
-                            self.errors +=1
+                            self.errors += 1
                             continue
                         else:
                             return False
@@ -89,14 +90,15 @@ class SublexicalScore:
         else:
             return False
 
+    # Check number of substitutions.
     def substitution(self):
         if len(self.response) == len(self.target):
             s = 0
             for i in range(0, len(self.response)):
                 if self.response[i] != self.target[i]:
                     s += 1
-                    self.errors +=1
-            return s==1
+                    self.errors += 1
+            return s == 1
         return False
 
     def deletion(self):
@@ -106,4 +108,3 @@ class SublexicalScore:
         if diff == 1:
             return all([r in self.target for r in self.response])
         return False
-
