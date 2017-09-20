@@ -37,6 +37,8 @@ def handler404(request):
 def index(request):
     # Dictionary with variable names from html.
     variable_names = {}
+
+    # which scoring system?
     semantic = False
     if 'scoringsystem' in request.session:
         semantic = request.session['scoringsystem'] == 'ADRES Semantic'
@@ -57,25 +59,39 @@ def index(request):
     variable_names['scoringsystem'] = semantic
     return render(request, 'adres.html', variable_names)
 
+#
+# For 10 inputs on /adres page
+#
 
 def score(request):
     targets = []
     last3 = []
     semantic = False
+    
     # For ADRES Semantic system.
     if request.POST.get('scoringsystem', '') == 'ADRES Semantic':
         semantic = True
+
+    # Going through each input - storing each score as variable
+    
     for i in range(1, 11):
+
+        # initializing variable names
         target_var = 'target' + str(i)
         response_var = 'response' + str(i)
         sub_lex_var = 'sublex' + str(i)
         lex_var = 'lex' + str(i)
+
+        # getting variables 
         target = request.POST.get(target_var, '')
         targets += [target]
         response = request.POST.get(response_var, '')
+
+        # saving variables in session
         request.session[target_var] = target
         request.session[response_var] = response
 
+        # scoring
         sublex_score = sublex.SublexicalScore(target=target, response=response).score()
         if semantic:
             lex_score = semantic_lex.SemanticLexicalScore(target=target, response=response, last3=last3,
@@ -83,17 +99,25 @@ def score(request):
 
         else:
             lex_score = lex.LexicalScore(target=target, response=response, last3=last3, targets=targets).score()
+        
+        # updating last3 responses for perseveration
         if len(last3) > 2 and response != '':
             last3 = last3[1:]
             last3 += [response]
 
+        # if no input 
         if target == '' and response == '':
             continue
+
+        # saving results to session
         request.session[sub_lex_var] = 'Sublexical: ' + str(sublex_score)
         request.session[lex_var] = 'Lexical: ' + str(lex_score)
 
     return redirect('/adres')
 
+#
+# Download csv of scores
+#
 
 def script(request):
     csv = UploadFileForm(request.POST, request.FILES)

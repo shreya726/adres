@@ -19,24 +19,37 @@ class SublexicalScore:
         return float(letters) / float(len(self.target)) >= 0.5
 
     def score(self):
+        
+        # Clinicians input if patients indicate no response
         if "don't know" in self.response: return 0
         if "not sure" in self.response: return 0
+        
         if ';' in self.response:
-            '''If multiple responses entered, take the last one afer semicolon as the whole response.
-            '''
+            # If multiple responses entered, 
+            # take the last one afer semicolon as the whole response.
+            #
             self.response = self.response.split(';')[-1]
+        
+        # Cleaning up traiing and begining spaces
         if len(self.response) > 1:
             while self.response[0] == " " and len(self.response) > 1:
                 self.response = self.response[1:]
             while self.response[-1] == " " and len(self.response) > 1:
                 self.response = self.response[:-1]
+        
+        # Perfect match
         if self.response == self.target:
             return 9
+
+        # No response
         if self.response == "" or self.response == "-":
             return 0
+
+        # Added 1 letter
         if self.addition():
             return 7
 
+        # If certain amount of overlap
         self.overlap = self.overlap_word()
         if not self.overlap:
             if len(self.response) == len(self.target):
@@ -44,10 +57,15 @@ class SublexicalScore:
             else:
                 return 1
 
+        # Single deletion
         if self.deletion():
             return 4
+
+        # Single transposition
         if self.transposition():
             return 6
+
+        # Single sub
         if self.substitution():
             return 5
         else:
