@@ -19,7 +19,7 @@
     <!-- CUSTOM STYLE CSS -->
     <link href="{% static "assets/css/style.css" %}" rel="stylesheet"/>
     <!-- CUSTOM THEME COLOR -- YOU CAN USE LIGHT & DARK THEMES  -->
-    <link href="{% static "assets/css/themes/light.css" %}" rel="stylesheet"/>
+    <link href="{% static "assets/css/themes/dark.css" %}" rel="stylesheet"/>
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
 </head>
@@ -46,15 +46,21 @@
     </div>
 </div>
 <!--END NAB BAR SECTION-->
-<div id="home-sec">
-    <div class="overlay">
+<!-- <div id="home-sec"> -->
+   <!--  <div class="overlay"> -->
         <div class="container">
             <div class="col-md-8 pad-top scrollclass">
 
-                <h1><strong>
-                    <mark>ADRES</mark>
-                    <br>Automated Dual-Route Error Scoring</strong></h1>
-                <p class="home-p">
+                <h1 align="center"><strong>
+                    <div class="row text-center min-set">
+        
+                <h1><strong>ADRES</strong></h1>
+                <hr class="sub-hr"/>
+           
+        </div>
+                   
+                   ADRES <br>Automated Dual-Route Error Scoring</strong></h1>
+                <p >
                     Developed at the Boston University Aphasia Research Laboratory with funding from the
                     Dudley Allen Sargent Research Fund and the
                     Boston University Undergrad. Research Opportunities Program.
@@ -62,17 +68,43 @@
                 <a class="btn btn-primary btn-lg btn-home" href="/adres">Try it out! &nbsp; <i
                         class="fa fa-toggle-on"></i></a>
             </div>
-            <div class="col-md-4 img-home-side ">
-                <img src="{% static "assets/img/home-side.png" %}" class="img-responsive"/>
-                <!--<img src="../static/assets/img/home-side.png" class="img-responsive" />-->
-            </div>
+            </div> -->
         </div>
-    </div>
+    <!-- </div> -->
 
 </div>
 <!--END HOME SECTION-->
-<section id="scoring-system">
+<section id="semantic-explanation">
     <div class="container">
+        <div class="row text-center min-set">
+            <div class="col-md-12">
+                <h2>What is ADRES?</h2>
+                <hr class="sub-hr"/>
+            </div>
+        </div>
+        <div class="row">
+                <span>Automated Dual Route Error Scoring (ADRES) is a tool for analyzing reading and writing errors at the single-word level. ADRES was designed at the Boston University Aphasia Research Laboratory to assess print processing for individuals with the acquired language deficits known as alexia and agraphia. With this system, clinicians and researchers, alike, can gain a more thorough understanding of their clients’ language patterns.</span>
+            <br>
+            <br>
+            <span>
+                Users input the target (i.e., the word your client attempted to read/write) and the response (i.e., their actual production). Then ADRES returns a binary score – Sublexical, Lexical – based on the response’s accuracy in both spelling and meaning. Scores range from 0 – 9 in the sublexical and lexical systems, with 0 indicating “no response” and 9 indicating a “correct” production. </span>
+
+        </div>
+<div class="row text-center min-set">
+        <div class="col-md-12">
+                <h2>Why use ADRES?</h2>
+                <hr class="sub-hr"/>
+            </div>
+        </div>
+            <div class="row">
+                <span>By evaluating results in this way, it is possible to:
+                    <ul>
+<li>Better understand the function and dysfunction of clients’ print processing systems</li>
+<li>Determine what aspect(s) of the language system might be appropriate to target in treatment</li>
+<li>Quantify progress beyond the level of “correct” vs. “incorrect” scores</li></ul></span>
+
+    </div>
+
         <div class="row text-center min-set">
             <div class="col-md-12">
                 <h2>Scoring System </h2>
@@ -125,13 +157,7 @@
     </div>
 </section>
 <!--END ADVANCE SECTION-->
-<div id="just-sec" style="">
-    <div class="overlay">
-        + YOUR HEADLINE GOES HERE +
-    </div>
 
-</div>
-<!--END JUST SECTION-->
 
 <section id="location-sec">
     <div class="container">

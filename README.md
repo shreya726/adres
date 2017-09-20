@@ -6,7 +6,7 @@ To run:
 ```
 git clone https://github.com/shreya726/adres.git
 pip install pyenchant pattern nltk PyDictionary
-cd adres/mysite
+cd adres
 python2.7 manage.py runserver
 ```
 
