@@ -54,7 +54,10 @@ def parse_csv(file, semantic):
     targets = []
     responses = []
     for row in file.split('\n'):
+
+        # error checking for empty rows
         if len(row) < 2: continue
+        
         # Getting first two columns
         row = row.split(',')
         targets.append(row[0])
@@ -63,21 +66,31 @@ def parse_csv(file, semantic):
     return scores
 
 def graph(scores):
-    #you can pass a StringIO object to pyplot.savefig(), and get the PNG file content by StringIO.getvalue().
-    #
+
+    # Sublexical: x, lexical: y
     scores_xy = [(x,y) for (t,r,x,y) in scores[1:]]
     points_xy = list(set(scores_xy))
+
+    #
+    # Making the size of the point bigger based on how frequently it appears
+    #
+
     frequency_xy = {}
     for point in points_xy:
         frequency_xy[point] = scores_xy.count(point)
     x, y = zip(*frequency_xy.keys())
     s = list(frequency_xy.values())
+
+    # Cleaning up space
+    del frequency_xy, scores_xy, points_xy
+
+    # Plot as scatterplot
     plt.scatter(x,y,s=s)
     plt.xlabel('Sublexical', fontsize=16)
     plt.ylabel('Lexical', fontsize=16)
 
+    # Save image as StringIO object
     buf = StringIO.StringIO()
     plt.savefig(buf)
 
     return buf
-    #pass
