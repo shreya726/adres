@@ -1,4 +1,7 @@
 #!/usr/bin/python
+
+import StringIO
+
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.template import Context, loader
@@ -120,18 +123,72 @@ def score(request):
 #
 
 def script(request):
+    
+    if request.POST.get('download-img'):
+        return image(request)
+
     csv = UploadFileForm(request.POST, request.FILES)
 
-    if csv is not None:
+    if csv is not None and 'scores' not in request.session:
         csv_input = request.FILES['csv'].read()
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="ADRES-scores.csv"'
         semantic = request.POST.get('scoringsystem', '') == 'ADRES Semantic'
+        scores = handle_csv.parse_csv(csv_input, semantic)
+        request.session['scores'] = scores
         c = Context({
-            'data': handle_csv.parse_csv(csv_input, semantic),
+            'data': scores,
         })
         t = loader.get_template('clean_csv.txt')
         request.session['csv'] = 'csv_loaded'
         response.write(t.render(c))
         return response
+    
+    elif csv is not None:
+        scores = request.session['scores']
+        c = Context({
+            'data': scores,
+        })
+        t = loader.get_template('clean_csv.txt')
+        request.session['csv'] = 'csv_loaded'
+        response.write(t.render(c))
+        return response
+
     return redirect('/upload')
+
+def image(request):
+    csv = UploadFileForm(request.POST, request.FILES)
+
+    if 'scores' not in request.session and csv is not None:
+        csv_input = request.FILES['csv'].read()
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="ADRES-scores.csv"'
+        semantic = request.POST.get('scoringsystem', '') == 'ADRES Semantic'
+        scores = handle_csv.parse_csv(csv_input, semantic)
+        request.session['scores'] = scores
+
+        graph = handle_csv.graph(scores).getvalue()
+
+        c = Context({
+            'data': graph,
+        })
+
+        request.session['graph'] = 'graph_loaded'
+
+        return HttpResponse(graph, content_type="image/png")
+    
+    elif csv is not None:
+        scores = request.session['scores']
+        graph = handle_csv.graph(scores).getvalue()
+
+        c = Context({
+            'data': graph,
+        })
+
+        request.session['graph'] = 'graph_loaded'
+
+        return HttpResponse(graph, content_type="image/png")
+
+    return redirect('/upload')
+
+
